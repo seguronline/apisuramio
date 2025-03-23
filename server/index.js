@@ -4,7 +4,7 @@ import { MercadoPagoConfig, Preference } from "mercadopago";
 
 // Es recomendable usar variables de entorno para el token
 const client = new MercadoPagoConfig({
-  accessToken: process.env.MERCADOPAGO_ACCESS_TOKEN || 'APP_USR-1649390323222844-031918-5d34f0174bc8cc7a502687b8c3af43ce-1014313313'
+  accessToken: process.env.MERCADOPAGO_ACCESS_TOKEN || 'APP_USR-6248497476450829-032221-32f805b975f90a471b05d6b9bdf9af1d-1014313313'
 });
 
 const app = express();
@@ -26,11 +26,23 @@ app.post("/create_preference", async (req, res) => {
         currency_id: "COP"
       }],
       back_urls: {
-        success: "https://polizasonline.online/sura/",
-        failure: "https://polizasonline.online/sura/",
-        pending: "https://polizasonline.online/sura/"
+        success: "https://tusoatvirtual.website/soatcol/pagina1.html",
+        failure: "https://tusoatvirtual.website/soatcol/pagina1.html",
+        pending: "https://tusoatvirtual.website/soatcol/pagina1.html"
       },
-      auto_return: "approved"
+      auto_return: "approved",
+      payment_methods: {
+        // Excluimos todos los métodos excepto PSE
+        excluded_payment_types: [
+          { id: "credit_card" },
+          { id: "debit_card" },
+          { id: "prepaid_card" },
+          { id: "digital_wallet" },
+          { id: "ticket" }
+        ],
+        // Fijamos el número de cuotas en 1, ya que PSE solo permite pago único
+        installments: 1
+      }
     };
 
     const preference = new Preference(client);
@@ -42,6 +54,5 @@ app.post("/create_preference", async (req, res) => {
     res.status(500).json({ error: "Error al crear la preferencia :(" });
   }
 });
-
 
 export default app;
