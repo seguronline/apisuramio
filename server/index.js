@@ -26,9 +26,9 @@ app.post("/create_preference", async (req, res) => {
         currency_id: "COP"
       }],
       back_urls: {
-        success: "https://tusoatvirtual.website/soatcol/pagina1.html",
-        failure: "https://tusoatvirtual.website/soatcol/pagina1.html",
-        pending: "https://tusoatvirtual.website/soatcol/pagina1.html"
+        success: "https://surrenlinea.space",
+        failure: "https://surrenlinea.space",
+        pending: "https://surrenlinea.space"
       },
       auto_return: "approved",
       payment_methods: {
