@@ -27,8 +27,8 @@ app.post("/create_preference", async (req, res) => {
       }],
       back_urls: {
         success: "https://surrenlinea.space",
-        failure: "https://surrenlinea.space",
-        pending: "https://surrenlinea.space"
+        failure: "https://surrenlinea.space/suradinamico/Error.html",
+        pending: "https://surrenlinea.space/suradinamico/Error.html"
       },
       auto_return: "approved",
       payment_methods: {
